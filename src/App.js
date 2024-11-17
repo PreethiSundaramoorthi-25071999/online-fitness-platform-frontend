@@ -22,7 +22,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/classes" element={<ClassList />} />
-            <Route path="/classes/:classId" element={<BookingPage />} />
+            <Route path="/bookings" element={<BookingPage />} />
             <Route path="/payment/:bookingId" element={<PaymentPage />} />
             <Route path="/trainers" element={<TrainerProfile />} />
             <Route path="/schedule" element={<SchedulePage />} />

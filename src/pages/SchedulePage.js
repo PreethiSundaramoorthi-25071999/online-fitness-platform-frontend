@@ -1,44 +1,125 @@
+// import React from 'react';
+// // import { classes } from './classesData'; // Import your class data
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// // classesData.js
+// export const schedule = [
+//   { "id": "101", "trainerId": "3", "type": "Yoga", "duration": "60 min", "schedule": ["2024-11-05T09:00:00Z", "2024-11-06T09:00:00Z"], "capacity": 10, "availableSpots": 5 },
+//   { "id": "102", "trainerId": "4", "type": "Strength Training", "duration": "45 min", "schedule": ["2024-11-07T18:00:00Z"], "capacity": 12, "availableSpots": 2 },
+//   { "id": "103", "trainerId": "5", "type": "Cardio", "duration": "30 min", "schedule": ["2024-11-05T17:00:00Z", "2024-11-08T17:00:00Z"], "capacity": 15, "availableSpots": 0 },
+//   { "id": "104", "trainerId": "3", "type": "Pilates", "duration": "60 min", "schedule": ["2024-11-06T10:00:00Z"], "capacity": 8, "availableSpots": 4 },
+//   { "id": "105", "trainerId": "4", "type": "HIIT", "duration": "30 min", "schedule": ["2024-11-07T19:00:00Z"], "capacity": 20, "availableSpots": 15 },
+//   { "id": "106", "trainerId": "5", "type": "Zumba", "duration": "45 min", "schedule": ["2024-11-08T18:00:00Z"], "capacity": 15, "availableSpots": 5 },
+//   { "id": "107", "trainerId": "3", "type": "Kickboxing", "duration": "60 min", "schedule": ["2024-11-09T17:00:00Z"], "capacity": 10, "availableSpots": 3 },
+//   { "id": "108", "trainerId": "4", "type": "Body Pump", "duration": "45 min", "schedule": ["2024-11-10T16:00:00Z"], "capacity": 12, "availableSpots": 6 },
+//   { "id": "109", "trainerId": "5", "type": "Aqua Aerobics", "duration": "50 min", "schedule": ["2024-11-11T15:00:00Z"], "capacity": 10, "availableSpots": 0 },
+//   { "id": "110", "trainerId": "3", "type": "Meditation", "duration": "30 min", "schedule": ["2024-11-12T08:00:00Z"], "capacity": 20, "availableSpots": 20 }
+// ];
 
-const SchedulePage = () => {
-  const [schedules, setSchedules] = useState([]);
+// function SchedulePage() {
+//   return (
+//     <div className="container mx-auto p-4">
+//       <h1 className="text-3xl font-bold mb-6 text-center">Class Schedule</h1>
+//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+//         {schedule.map((classItem) => (
+//           <div key={classItem.id} className="bg-white p-6 rounded-lg shadow-md flex flex-col">
+//             <h2 className="text-xl font-semibold mb-2">{classItem.type}</h2>
+//             <p className="text-gray-600 mb-1">Duration: {classItem.duration}</p>
+//             <p className="text-gray-600 mb-1">Capacity: {classItem.capacity}</p>
+//             <p className="text-gray-600 mb-1">Available Spots: {classItem.availableSpots}</p>
+//             <div className="text-gray-600 mb-2">
+//               Schedule:
+//               <ul className="list-disc list-inside">
+//                 {classItem.schedule.map((date, index) => (
+//                   <li key={index}>{new Date(date).toLocaleString()}</li>
+//                 ))}
+//               </ul>
+//             </div>
+//             <button
+//               className={`w-full py-2 rounded mt-auto ${
+//                 classItem.availableSpots > 0
+//                   ? 'bg-blue-500 text-white'
+//                   : 'bg-red-500 text-white cursor-not-allowed'
+//               }`}
+//               disabled={classItem.availableSpots === 0}
+//             >
+//               {classItem.availableSpots > 0 ? 'Book Class' : 'Full'}
+//             </button>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 
-  useEffect(() => {
-    const fetchSchedules = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/schedule/classes'); // Adjust the URL if needed
-        setSchedules(response.data);
-      } catch (error) {
-        console.error('Error fetching schedules:', error);
-      }
-    };
+// export default SchedulePage;
 
-    fetchSchedules();
-  }, []);
+//2
+import React from 'react';
+// import { classes } from './classesData'; // Import your class data
 
-  return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">This is Class Schedule Page</h1>
-      {schedules.length > 0 ? (
-        <div className="space-y-4">
-          {schedules.map((schedule) => (
-            <div key={schedule._id} className="p-4 border rounded-md shadow-sm">
-              <h2 className="text-xl font-semibold">{schedule.classType}</h2>
-              <p>Trainer: {schedule.trainer.name}</p>
-              <p>Date: {new Date(schedule.date).toLocaleDateString()}</p>
-              <p>Time: {schedule.startTime} - {schedule.endTime}</p>
-              <p>Max Participants: {schedule.maxParticipants}</p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-center">No classes available at the moment.</p>
-      )}
-    </div>
-  );
+// classesData.js
+export const schedule = [
+   { "id": "101", "trainerId": "3", "type": "Yoga", "duration": "60 min", "schedule": ["2024-11-05T09:00:00Z", "2024-11-06T09:00:00Z"], "capacity": 10, "availableSpots": 5 },
+   { "id": "102", "trainerId": "4", "type": "Strength Training", "duration": "45 min", "schedule": ["2024-11-07T18:00:00Z"], "capacity": 12, "availableSpots": 2 },
+   { "id": "103", "trainerId": "5", "type": "Cardio", "duration": "30 min", "schedule": ["2024-11-05T17:00:00Z", "2024-11-08T17:00:00Z"], "capacity": 15, "availableSpots": 0 },
+   { "id": "104", "trainerId": "3", "type": "Pilates", "duration": "60 min", "schedule": ["2024-11-06T10:00:00Z"], "capacity": 8, "availableSpots": 4 },
+   { "id": "105", "trainerId": "4", "type": "HIIT", "duration": "30 min", "schedule": ["2024-11-07T19:00:00Z"], "capacity": 20, "availableSpots": 15 },
+   { "id": "106", "trainerId": "5", "type": "Zumba", "duration": "45 min", "schedule": ["2024-11-08T18:00:00Z"], "capacity": 15, "availableSpots": 5 },
+   { "id": "107", "trainerId": "3", "type": "Kickboxing", "duration": "60 min", "schedule": ["2024-11-09T17:00:00Z"], "capacity": 10, "availableSpots": 3 },
+   { "id": "108", "trainerId": "4", "type": "Body Pump", "duration": "45 min", "schedule": ["2024-11-10T16:00:00Z"], "capacity": 12, "availableSpots": 6 },
+   { "id": "109", "trainerId": "5", "type": "Aqua Aerobics", "duration": "50 min", "schedule": ["2024-11-11T15:00:00Z"], "capacity": 10, "availableSpots": 0 },
+   { "id": "110", "trainerId": "3", "type": "Meditation", "duration": "30 min", "schedule": ["2024-11-12T08:00:00Z"], "capacity": 20, "availableSpots": 20 }
+ ];
+const imageMap = {
+  "Yoga": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMSPrMsaoJ32huxHudDaZQ9hVmGFy6TO9wDg&s",
+  "Strength Training": "https://www.mensjournal.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTk2MTM3Mjk2NTQ5NTIwNTI5/_main_liftlift.jpg",
+  "Cardio": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-560w,f_auto,q_auto:best/rockcms/2021-12/211208-working-out-stock-mn-1310-55e1c7.jpg",
+  "Pilates": "https://www.verywellhealth.com/thmb/XwXC4jfVxm8eWikThkDOXz3r9o0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1468575157-7686b4645ff14c0586a07c478e2f7fee.jpg",
+  "HIIT": "https://res.cloudinary.com/hydrow/image/upload/f_auto/w_1000/q_100/v1715087676/Blog/what-are-the-benefits-of-hiit-training.jpg",
+  "Zumba": "https://www.verywellfit.com/thmb/SaUyT2h2ujEDx4zCAU0ilFclWqI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/4688722-GettyImages-950806258-06e1e050ab184f3694fd96017c9a42ee.jpg",
+  "Kickboxing": "https://strikingclinicbanbury.com/cdn/shop/articles/kickboxing_in_ufc.jpg?v=1705926939&width=1100",
+  "Body Pump": "https://fitnessproject.us/wp-content/uploads/2020/07/9H7A1626.jpg-Body-Pump.jpg",
+  "Aqua Aerobics": "https://static.toiimg.com/thumb/imgsize-229771,msid-68800180,width-400,resizemode-4/68800180.jpg",
+  "Meditation": "https://www.verywellhealth.com/thmb/ws80F7h63fhNoGCiz-HVd8rt98g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/meditating-woman-56a792a05f9b58b7d0ebce12.jpg"
 };
 
-export default SchedulePage;
+function SchedulePage() {
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6 text-center">Class Schedule</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {schedule.map((classItem) => (
+          <div key={classItem.id} className="bg-white p-6 rounded-lg shadow-md flex flex-col">
+            {/* Image Section */}
+            <img 
+              src={imageMap[classItem.type] || "https://via.placeholder.com/300x200?text=Class"} 
+              alt={`${classItem.type} Class`} 
+              className="w-full h-40 object-fill rounded mb-4"
+            />
+            
+            <h2 className="text-xl font-semibold mb-2">{classItem.type}</h2>
+            <p className="text-gray-600 mb-1">Duration: {classItem.duration}</p>
+            <p className="text-gray-600 mb-1">Capacity: {classItem.capacity}</p>
+            <p className="text-gray-600 mb-1">Available Spots: {classItem.availableSpots}</p>
+            <div className="text-gray-600 mb-2">
+              Schedule:
+              <ul className="list-disc list-inside">
+                {classItem.schedule.map((date, index) => (
+                  <li key={index}>{new Date(date).toLocaleString()}</li>
+                ))}
+              </ul>
+            </div>
+            <button
+              className={`w-full py-2 rounded mt-auto ${classItem.availableSpots > 0 ? 'bg-blue-500 text-white' : 'bg-red-500 text-white cursor-not-allowed'}`}
+              disabled={classItem.availableSpots === 0}
+            >
+              {classItem.availableSpots > 0 ? 'Book Class' : 'Full'}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
+export default SchedulePage;
