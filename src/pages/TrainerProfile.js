@@ -1,11 +1,11 @@
 
-// 4
+//5
 import React from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const trainers = [
-  { "id": "3", "name": "Emma White", "qualifications": ["Certified Yoga Instructor", "Nutrition Specialist"], "expertise": ["Yoga", "Meditation"], "rating": 4.9, "reviews": 25, "profilePic": "https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676352637-1K6JK547ZU2L928STUKM/Maria-21-Edit.jpg"},
-  { "id": "4", "name": "David Green", "qualifications": ["Certified Personal Trainer", "Kettlebell Specialist"], "expertise": ["Strength Training", "Functional Fitness"], "rating": 4.7, "reviews": 18, "profilePic": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" },
+  { "id": "3", "name": "Emma White", "qualifications": ["Certified Yoga Instructor"], "expertise": ["Yoga", "Meditation"], "rating": 4.9, "reviews": 25, "profilePic": "https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676352637-1K6JK547ZU2L928STUKM/Maria-21-Edit.jpg" },
+  { "id": "4", "name": "David Green", "qualifications": ["Certified Personal Trainer"], "expertise": ["Strength Training", "Functional Fitness"], "rating": 4.7, "reviews": 18, "profilePic": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" },
   { "id": "5", "name": "Laura Black", "qualifications": ["Certified Pilates Instructor"], "expertise": ["Pilates", "Rehabilitation"], "rating": 4.8, "reviews": 20, "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4ttvh7Ok0Qi4gF2_UsSp6uAUx3NqAVbrKwQ&s" },
   { "id": "6", "name": "Mike Brown", "qualifications": ["Group Fitness Instructor"], "expertise": ["HIIT", "Cardio"], "rating": 4.6, "reviews": 15, "profilePic": "https://cdn.pixabay.com/photo/2023/04/21/15/42/portrait-7942151_640.jpg" },
   { "id": "7", "name": "Sophie Adams", "qualifications": ["Zumba Certified"], "expertise": ["Dance Fitness", "Zumba"], "rating": 4.5, "reviews": 30, "profilePic": "https://media.istockphoto.com/id/1313502972/photo/portrait-of-beautiful-woman-having-fun.jpg?s=612x612&w=0&k=20&c=DHGWp3wIoSlpjK9xFdARpgpyo4t-hIzuqOSx5ZyRsHA=" },
@@ -17,6 +17,11 @@ const trainers = [
 ];
 
 function TrainerList() {
+  // Function to handle button click
+  const handleViewDetails = () => {
+    alert("Feature development is in process");
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6 text-center">Our Trainers</h1>
@@ -38,7 +43,10 @@ function TrainerList() {
                 <li key={index}>{qualification}</li>
               ))}
             </ul>
-            <button className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
+            <button
+              className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
+              onClick={handleViewDetails}
+            >
               View Details
             </button>
           </div>

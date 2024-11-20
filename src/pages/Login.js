@@ -1,6 +1,9 @@
+
+//2
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { FaDumbbell } from "react-icons/fa6";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,9 +13,19 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('/api/auth/login', { email, password });
+      const { data } = await axios.post('http://127.0.0.1:5001/api/users/login', { email, password });
+      console.log(data)
       localStorage.setItem('token', data.token);
-      navigate('/');
+      // localStorage.setItem('role', data.role);
+      if (data) {
+        setTimeout(() => {
+            if (data?.role === 'member') {
+                navigate('/MemberDashboard');
+            } else if (data?.role === 'trainer') {
+                navigate('/TrainerDashboard');
+            }
+        }, 1000);
+    }
     } catch (error) {
       console.error('Login failed', error);
     }
@@ -20,6 +33,12 @@ const Login = () => {
 
   return (
     <div className="container mx-auto">
+      {/* Fitness Platform Header */}
+      <header className="bg-blue-600 text-white flex py-4 px-6 text-left text-2xl font-bold items-center">
+      <FaDumbbell className="mr-2" /> {/* Dumbbell icon with margin */}
+        Fitness Platform
+      </header>
+      
       <h1 className="text-2xl font-bold text-center mt-8">Login</h1>
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8">
         <input
@@ -36,10 +55,14 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="bg-blue-600 text-white w-full py-2">Login</button>
+        <button className="bg-green-600 text-white w-full py-2 mb-4">Login</button>
       </form>
+      <p className="text-center text-gray-600 mt-4">
+        Don't have an account? <Link to="/register" className="text-indigo-600 hover:underline">Register</Link>
+      </p>
     </div>
   );
 };
 
 export default Login;
+

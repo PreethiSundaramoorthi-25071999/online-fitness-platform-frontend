@@ -1,58 +1,58 @@
 
+//5
+import React from 'react';
+import { CiTimer } from 'react-icons/ci'; // Import the CiTimer icon
+import { FaRegCalendarAlt } from "react-icons/fa"; // Import the calendar icon
 
-
-// 2
-import React from "react";
-
-const bookings = [
-  { "id": "201", "userId": "1", "classId": "101", "date": "2024-11-05T09:00:00Z", "status": "confirmed", "confirmationNotificationSent": true },
-  { "id": "202", "userId": "2", "classId": "102", "date": "2024-11-07T18:00:00Z", "status": "pending", "confirmationNotificationSent": false },
-  { "id": "203", "userId": "3", "classId": "103", "date": "2024-11-05T17:00:00Z", "status": "confirmed", "confirmationNotificationSent": true },
-  { "id": "204", "userId": "4", "classId": "104", "date": "2024-11-06T10:00:00Z", "status": "confirmed", "confirmationNotificationSent": true },
-  { "id": "205", "userId": "5", "classId": "105", "date": "2024-11-07T19:00:00Z", "status": "pending", "confirmationNotificationSent": false },
-  { "id": "206", "userId": "6", "classId": "106", "date": "2024-11-08T18:00:00Z", "status": "confirmed", "confirmationNotificationSent": true },
-  { "id": "207", "userId": "7", "classId": "107", "date": "2024-11-09T17:00:00Z", "status": "confirmed", "confirmationNotificationSent": true },
-  { "id": "208", "userId": "8", "classId": "108", "date": "2024-11-10T16:00:00Z", "status": "pending", "confirmationNotificationSent": false },
-  { "id": "209", "userId": "9", "classId": "109", "date": "2024-11-11T15:00:00Z", "status": "confirmed", "confirmationNotificationSent": true },
-  { "id": "210", "userId": "10", "classId": "110", "date": "2024-11-12T08:00:00Z", "status": "pending", "confirmationNotificationSent": false }
+// Booking data
+export const bookings = [
+  { "id": "107", "trainerId": "3", "type": "Kickboxing", "duration": "60 min", "schedule": ["2024-11-09T17:00:00Z"], "capacity": 10, "availableSpots": 3 },
+  { "id": "108", "trainerId": "4", "type": "Body Pump", "duration": "45 min", "schedule": ["2024-11-10T16:00:00Z"], "capacity": 12, "availableSpots": 6 },
+  { "id": "109", "trainerId": "5", "type": "Aqua Aerobics", "duration": "50 min", "schedule": ["2024-11-11T15:00:00Z"], "capacity": 10, "availableSpots": 0 },
+  { "id": "110", "trainerId": "3", "type": "Meditation", "duration": "30 min", "schedule": ["2024-11-12T08:00:00Z"], "capacity": 20, "availableSpots": 20 }
 ];
 
-function BookingList() {
-  const handleReschedule = (bookingId) => {
-    console.log("Reschedule booking:", bookingId);
-    // Add reschedule logic here
-  };
-
-  const handleDelete = (bookingId) => {
-    console.log("Delete booking:", bookingId);
-    // Add delete logic here
+function BookingPage() {
+  // Function to handle button clicks
+  const handleFeatureMessage = () => {
+    alert("Feature development is in process");
   };
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Bookings</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {bookings.map((booking) => (
-          <div key={booking.id} className="bg-white p-6 rounded-lg shadow-md">
-            <p className="text-xl font-semibold mb-2">Booking ID: {booking.id}</p>
-            <p className="text-gray-700 mb-2">User ID: {booking.userId}</p>
-            <p className="text-gray-700 mb-2">Class ID: {booking.classId}</p>
-            <p className="text-gray-700 mb-2">Date: {new Date(booking.date).toLocaleString()}</p>
-            <p className={`mb-2 ${booking.status === "confirmed" ? "text-green-600" : "text-yellow-600"}`}>
-              Status: {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+      <h1 className="text-3xl font-bold mb-6 text-center">My Bookings</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"> 
+        {bookings.map((classItem) => (
+          <div key={classItem.id} className="bg-white p-6 rounded-lg shadow-md flex flex-col">
+            <h2 className="text-xl font-semibold mb-2">{classItem.type}</h2>
+            <p className="font-semibold text-gray-600 mb-1 flex items-center">
+              <CiTimer className="mr-2" /> Duration: {classItem.duration}
             </p>
-            <p className="text-gray-700 mb-4">Notification Sent: {booking.confirmationNotificationSent ? "Yes" : "No"}</p>
-
-            <div className="flex space-x-4">
+            
+            <div className="text-gray-600 mb-2">
+              <h3 className="font-semibold mb-2 flex items-center">
+                <FaRegCalendarAlt className="mr-2" /> Timing:
+              </h3>
+              <div>
+                {classItem.schedule.map((date, index) => (
+                  <p key={index} className="text-gray-800">
+                    {new Date(date).toLocaleDateString()} {new Date(date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                ))}
+              </div>
+            </div>
+            
+            {/* Action Buttons */}
+            <div className="flex justify-end gap-4 mt-4">
               <button
-                onClick={() => handleReschedule(booking.id)}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                className="bg-green-500 text-white py-2 px-4 rounded font-semibold hover:bg-green-600"
+                onClick={handleFeatureMessage}
               >
                 Reschedule
               </button>
               <button
-                onClick={() => handleDelete(booking.id)}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                className="bg-red-500 text-white py-2 px-4 rounded font-semibold hover:bg-red-600"
+                onClick={handleFeatureMessage}
               >
                 Delete
               </button>
@@ -64,4 +64,4 @@ function BookingList() {
   );
 }
 
-export default BookingList;
+export default BookingPage;
