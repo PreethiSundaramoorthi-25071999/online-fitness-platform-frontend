@@ -24,7 +24,7 @@ const Login = () => {
             } else if (data?.role === 'trainer') {
                 navigate('/TrainerDashboard');
             }
-        }, 1000);
+        },);
     }
     } catch (error) {
       console.error('Login failed', error);
