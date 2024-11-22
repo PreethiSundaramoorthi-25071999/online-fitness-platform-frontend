@@ -9,7 +9,7 @@ const Logout = () => {
     // Simulate logging out and redirect to login after 2 seconds
     setTimeout(() => {
       navigate('/login');
-    }, 2000); // Redirect after 2 seconds (you can adjust this time)
+    }, 1000); // Redirect after 2 seconds (you can adjust this time)
   }, [navigate]);
 
   return (
